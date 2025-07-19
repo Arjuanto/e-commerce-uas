@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'payment_page.dart';
 
 class AlamatTagihanPage extends StatefulWidget {
   const AlamatTagihanPage({super.key});
@@ -36,7 +37,12 @@ class _AlamatTagihanPageState extends State<AlamatTagihanPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // kembali ke halaman sebelumnya
+          },
+        ),
         centerTitle: true,
         title: const Text(
           'Checkout',
@@ -44,6 +50,7 @@ class _AlamatTagihanPageState extends State<AlamatTagihanPage> {
         ),
         elevation: 0,
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView(
@@ -156,8 +163,12 @@ class _AlamatTagihanPageState extends State<AlamatTagihanPage> {
                 ),
               ),
               onPressed: () {
-                // Aksi lanjut ke pembayaran
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PaymentPage()),
+                );
               },
+
               child: const Text(
                 "Lanjutkan ke Pembayaran",
                 style: TextStyle(fontSize: 16, color: Colors.white),

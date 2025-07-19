@@ -204,7 +204,14 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.favorite_border),
-                  onPressed: () {},
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Berhasil ditambahkan ke wishlist!"),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

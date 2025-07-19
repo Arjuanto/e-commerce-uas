@@ -17,7 +17,12 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.centerLeft,
-                    // child: Icon(Icons.arrow_back),
+                    // child: IconButton(
+                    //   icon: const Icon(Icons.arrow_back),
+                    //   onPressed: () {
+                    //     Navigator.pop(context); // Navigasi kembali
+                    //   },
+                    // ),
                   ),
                   const Center(
                     child: Text(
@@ -42,7 +47,6 @@ class ProfilePage extends StatelessWidget {
                       radius: 48,
                       backgroundImage: AssetImage('images/profile.png'),
                     ),
-
                     Positioned(
                       right: 0,
                       bottom: 0,
@@ -70,26 +74,35 @@ class ProfilePage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Status Pesanan
+            // Status Pesanan (Tengah)
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  _StatusItem(count: 0, label: "Pengolahan"),
-                  _StatusItem(count: 0, label: "Dikirim"),
-                  _StatusItem(count: 0, label: "Siap untuk Pickup"),
+                  _StatusItem(count: 0, label: "Pengolahan", icon: Icons.sync),
+                  SizedBox(width: 24),
+                  _StatusItem(
+                    count: 0,
+                    label: "Dikirim",
+                    icon: Icons.local_shipping,
+                  ),
+                  SizedBox(width: 24),
+                  _StatusItem(
+                    count: 0,
+                    label: "Siap Pickup",
+                    icon: Icons.store,
+                  ),
                 ],
               ),
             ),
             const SizedBox(height: 16),
-
             const Divider(),
 
-            // Menu
+            // Menu Profil
             Expanded(
               child: ListView(
-                children: const [
+                children: [
                   _ProfileMenuItem(title: "Order Saya"),
                   _ProfileMenuItem(title: "Voucher"),
                   _ProfileMenuItem(title: "Alamat Pengiriman"),
@@ -106,27 +119,44 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
+// Widget Status
 class _StatusItem extends StatelessWidget {
   final int count;
   final String label;
+  final IconData icon;
 
-  const _StatusItem({required this.count, required this.label});
+  const _StatusItem({
+    required this.count,
+    required this.label,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        CircleAvatar(
+          radius: 20,
+          backgroundColor: Colors.black,
+          child: Icon(icon, color: Colors.white, size: 20),
+        ),
+        const SizedBox(height: 6),
         Text(
           '$count',
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
         ),
-        const SizedBox(height: 4),
-        Text(label, style: const TextStyle(fontSize: 12)),
+        const SizedBox(height: 2),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 12),
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }
 }
 
+// Widget Menu Profil
 class _ProfileMenuItem extends StatelessWidget {
   final String title;
 
@@ -138,7 +168,7 @@ class _ProfileMenuItem extends StatelessWidget {
       title: Text(title),
       trailing: const Icon(Icons.chevron_right),
       onTap: () {
-        // Navigasi bisa ditambahkan di sini
+        // Tambahkan navigasi jika perlu
       },
     );
   }

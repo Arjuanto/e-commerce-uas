@@ -1,3 +1,4 @@
+import 'package:aplikasi_uas/pages/alamat_tagihan.dart';
 import 'package:flutter/material.dart';
 
 class CartPage extends StatelessWidget {
@@ -20,7 +21,6 @@ class CartPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Keranjang"),
         centerTitle: true,
-        // leading: BackButton(color: Colors.black),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -75,7 +75,14 @@ class CartPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AlamatTagihanPage(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       padding: EdgeInsets.symmetric(vertical: 16),
