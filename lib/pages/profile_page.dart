@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'alamat_page.dart';
+import 'order_page.dart';
+import 'voucher_page.dart';
+import 'pengaturan_page.dart';
+import 'pelayanan_pelanggan_page.dart';
+import 'faq_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -103,12 +109,67 @@ class ProfilePage extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  _ProfileMenuItem(title: "Order Saya"),
-                  _ProfileMenuItem(title: "Voucher"),
-                  _ProfileMenuItem(title: "Alamat Pengiriman"),
-                  _ProfileMenuItem(title: "FAQ"),
-                  _ProfileMenuItem(title: "Pelayanan Pelanggan"),
-                  _ProfileMenuItem(title: "Pengaturan"),
+                  _ProfileMenuItem(
+                    title: "Order Saya",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const OrderPage()),
+                      );
+                    },
+                  ),
+
+                  _ProfileMenuItem(
+                    title: "Voucher",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const VoucherPage()),
+                      );
+                    },
+                  ),
+
+                  _ProfileMenuItem(
+                    title: "Alamat Pengiriman",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const AlamatPage()),
+                      );
+                    },
+                  ),
+
+                  _ProfileMenuItem(
+                    title: "FAQ",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const FAQPage()),
+                      );
+                    },
+                  ),
+                  _ProfileMenuItem(
+                    title: "Pelayanan Pelanggan",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const PelayananPelangganPage(),
+                        ),
+                      );
+                    },
+                  ),
+                  _ProfileMenuItem(
+                    title: "Pengaturan",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const PengaturanPage(),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -159,17 +220,19 @@ class _StatusItem extends StatelessWidget {
 // Widget Menu Profil
 class _ProfileMenuItem extends StatelessWidget {
   final String title;
+  final VoidCallback? onTap; // Tambahkan ini
 
-  const _ProfileMenuItem({required this.title});
+  const _ProfileMenuItem({
+    required this.title,
+    this.onTap, // Tambahkan ini
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(title),
       trailing: const Icon(Icons.chevron_right),
-      onTap: () {
-        // Tambahkan navigasi jika perlu
-      },
+      onTap: onTap, // Gunakan parameter ini
     );
   }
 }
